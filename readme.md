@@ -1,4 +1,4 @@
-Vinicius de Almeida Lima (212050070)
+Vinicius de Almeida Lima
 
 
 
