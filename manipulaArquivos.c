@@ -1,7 +1,7 @@
 #include "./headers/manipulaArquivos.h"
 
 
-void openFILE(char *fileName, Ponto **P, Ancora *ancora){
+void inputFile(char *fileName, Ponto **P, Ancora *ancora){
     int x, y;
     FILE *file;
     file = fopen(fileName, "r");
@@ -23,19 +23,19 @@ void openFILE(char *fileName, Ponto **P, Ancora *ancora){
 };
 
 void outputFile(char *fileName, int maiorSequencia) {
-    FILE *arquivo; // ponteiro para arquivo
-    arquivo = fopen(fileName, "w"); // abre o arquivo em modo de escrita
+    FILE *file; // ponteiro para arquivo
+    file = fopen(fileName, "w"); // abre o arquivo em modo de escrita
     
-    if (arquivo == NULL) { // verifica se o arquivo foi aberto corretamente
-        printf("Erro ao abrir o arquivo!");
+    if (file == NULL) { // verifica se o arquivo foi aberto corretamente
+        printf("Couldn't open file!\n");
         return;
     }
     
-    fprintf(arquivo, "%d", maiorSequencia); // escreve o valor de maiorSequencia no arquivo
-    fclose(arquivo); // fecha o arquivo
+    fprintf(file, "%d", maiorSequencia); // escreve o valor de maiorSequencia no arquivo
+    fclose(file); // fecha o arquivo
 }
 
-void ioFlags(int argc, char * argv[],  Ponto **P, Ancora *ancora, char **outputFileName){
+void inputOutputFlags(int argc, char * argv[],  Ponto **P, Ancora *ancora, char **outputFileName){
     int c;
     char *filename;
     while ((c = getopt(argc, argv, ":i:o:")) != -1) {

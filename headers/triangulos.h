@@ -17,7 +17,6 @@ typedef struct{
     Ponto a;
     Ponto b;
     Ponto c;
-    int length;
 
 } Triangulo;
 
@@ -31,11 +30,7 @@ int trianguloEstaDentroDoTriangulo(Triangulo t, Triangulo p);
 
 void criarTriangulos(Ponto **P, Ancora *ancora, Triangulo **T);
 
-int compararTriangulos(const void* a, const void* b);
-
-float areaDoTriangulo(Triangulo *T);
-
-int comparaArea(Triangulo *t1, Triangulo *t2);
+int compararTriangulos(const Triangulo* t1, const Triangulo* t2);
 
 
 #endif

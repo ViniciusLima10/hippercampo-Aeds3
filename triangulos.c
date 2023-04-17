@@ -7,18 +7,18 @@ int trianguloEstaDentroDoTriangulo(Triangulo t, Triangulo p) {//verifica se o tr
         return 0;
     }
     
-    float d1, d2, d3;
+    float l1, l2, l3;
     int negativo = 0, positivo = 0;
 
-    d1 = (p.c.x - t.a.x) * (t.b.y - t.a.y) - (t.b.x - t.a.x) * (p.c.y - t.a.y);
-    d2 = (p.c.x - t.b.x) * (t.c.y - t.b.y) - (t.c.x - t.b.x) * (p.c.y - t.b.y);
-    d3 = (p.c.x - t.c.x) * (t.a.y - t.c.y) - (t.a.x - t.c.x) * (p.c.y - t.c.y);
+    l1 = (p.c.x - t.a.x) * (t.b.y - t.a.y) - (t.b.x - t.a.x) * (p.c.y - t.a.y);
+    l2 = (p.c.x - t.b.x) * (t.c.y - t.b.y) - (t.c.x - t.b.x) * (p.c.y - t.b.y);
+    l3 = (p.c.x - t.c.x) * (t.a.y - t.c.y) - (t.a.x - t.c.x) * (p.c.y - t.c.y);
 
-    if ((d1 < 0) || (d2 < 0) || (d3 < 0)) {
+    if ((l1 < 0) || (l2 < 0) || (l3 < 0)) {
         negativo = 1;
     }
 
-    if ((d1 > 0) || (d2 > 0) || (d3 > 0)) {
+    if ((l1 > 0) || (l2 > 0) || (l3 > 0)) {
         positivo = 1;
     }
 
@@ -45,28 +45,15 @@ void criarTriangulos(Ponto **P, Ancora *ancora, Triangulo **T) {
 
 }
 
-// Função de comparação para ordenar os triângulos em ordem crescente com base em T.c.y
-int compararTriangulos(const void* a, const void* b) {
-    Triangulo* t1 = (Triangulo*) a;
-    Triangulo* t2 = (Triangulo*) b;
-    if (t1->c.y > t2->c.y) return -1;
-    if (t1->c.y < t2->c.y) return 1;
+
+int compararTriangulos(const Triangulo* t1, const Triangulo* t2) {
+    
+    if (t1->c.y > t2->c.y){
+        return -1;
+    } else if (t1->c.y < t2->c.y){
+        return 1;
+    }
+    
     return 0;
 }
 
-float areaDoTriangulo(Triangulo *T) {
-    return fabs((T->a.x * (T->b.y - T->c.y) + T->b.x * (T->c.y - T->a.y) + T->c.x * (T->a.y - T->b.y)) / 2.0);
-}
-
-// Função para comparar a área de dois triângulos
-int comparaArea(Triangulo *t1, Triangulo *t2) {
-    float area1 = areaDoTriangulo(t1);
-    float area2 = areaDoTriangulo(t2);
-    if (area1 > area2) {
-        return -1;
-    } else if (area1 < area2) {
-        return 1;
-    } else {
-        return 0;
-    }
-}
